@@ -11,23 +11,48 @@ class User():
         self.signed_user = []
         self.role = role # doctor, patient, nurse
 
-    def signUp(self):
-        self.name = input("Full name: ")
-        self.email = input("Email: ")
-        self.specialty = input("Specialty: ")
-        self.qualification = input("Qualifications: ")
-        self.yearsOfExperience = int(input("Years of experience: "))
-        self.workingSchedule = int(input("Working schedule: "))
+    def signUpDoctor(self):
+        d_name = input("Full name: ")
+        d_email = input("Email: ")
+        d_specialty = input("Specialty: ")
+        d_qualification = input("Qualifications: ")
+        d_yearsOfExperience = int(input("Years of experience: "))
+        d_workingSchedule = int(input("Working schedule: "))
 
-    def to_dict(self):
-        return {
-            "Full name": self.name,
-            "Email": self.email,
-            "Specialty": self.specialty,
-            "YOE": self.yearsOfExperience,
-            "WS": self.workingSchedule,
-            "Qualification": self.qualification
+        doctor_info = {
+            "Name" : d_name,
+            "Email" : d_email,
+            "Specialty" : d_specialty,
+            "Qualification" : d_qualification,
+            "YOE" : d_yearsOfExperience,
+            "WS" : d_workingSchedule
         }
+
+        # print(doctor_info["Qualification"])
+
+    def signUpPatient(self):
+        p_name = input("Fullname: ")
+        p_age = int(input("Age: "))
+        p_gender = input("Gender: ")
+        p_email = input("E-mail: ")
+        p_contact = int(input("Contact: "))
+        p_emergency_contact = int(input("Emergency Contact: "))
+        p_blood_group = input("Blood Group (e.g A+, A-, B+, B-, O+, O-, AB+, AB-): ")
+
+        patient_info = {
+            "Name": p_name,
+            "Age" : p_age,
+            "Gender" : p_gender,
+            "Email" : p_email,
+            "Contact" : p_contact,
+            "Emergency Contact" : p_emergency_contact,
+            "Blood Group" : p_blood_group
+        }
+
+        # print(patient_info["Name"])
+
+    def signUpStaff(self):
+        pass
 
     def login(self):
         pass
@@ -54,6 +79,6 @@ class Hospital(User):
     pass
 
 end = User(1, 'Dara',  'Dentist', 'fm@gmail.com')
-end.signUp()
-print(end.to_dict())
-print(end.name)
+end.signUpPatient()
+# print(end.to_dict())
+# print(end.name)
