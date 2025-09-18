@@ -4,11 +4,11 @@ init(autoreset = True)
 # from database import my_cursor
 
 class User():
+    signed_user = []
     def __init__(self, user_id, name, role, email):
         self.user_id = user_id
         self.name = name
         self.email = email
-        self.signed_user = []
         self.role = role # doctor, patient, nurse
 
     def signUpDoctor(self):
@@ -56,13 +56,26 @@ class User():
             "Blood Group" : p_blood_group
         }
 
+        self.signed_user.append(patient_info)
+        print(f"Patient {p_name} registered successfully!")
+        patient = Patient(self.user_id, self.name, "Patient", self.email)
+        patient.patient_menu()
+
         # print(patient_info["Name"])
 
     def signUpStaff(self):
         pass
 
-    def login(self):
-        pass
+    def login(self, email):
+        for user in self.signed_user:
+            if user["Email"] == email:
+                print("Login successful!")
+                patient = Patient(self.user_id, self.name, "Patient", self.email)
+                patient.patient_menu()
+            else:
+                print("User not found!")
+        print("User not found!")
+        return
 
     def confirm(self):
         pass
@@ -86,33 +99,72 @@ class User():
                 doc = Doctor(self.user_id, self.name, "Doctor", self.email)
                 doc.doc_menu()
             elif option == '3':
-                pass
+                patient = Patient(self.user_id, self.name, "Patient", self.email)
+                patient.option()
             elif option == '4':
                 print("Thanks for visiting our hospital.....")
                 break
             else:
-                print("Inb=valid option, try again!")
+                print("Invalid option, try again!")
 
 class Patient(User):
-    def patient_menu(self):
+    def option(self):
         print("""
-                -------PATIENT MENU-------
-                1. Book Appointment
-                2. View Appointments
-                3. View Bills
-                4. View Medical History
-                5. Back to Main Menu
+                -------SELECT-------
+                1. Sign Up
+                2. Sign In
             """)
+        option = input("Select an option(1-2): ")
+        if option == '1':
+            self.signUpPatient()
+        elif option == '2':
+            email = input("Enter your email: ")
+            self.login(email)
+
+    def patient_menu(self):
+        while True:
+            print("""
+                    -------PATIENT MENU-------
+                    1. Book Appointment
+                    2. View Appointments
+                    3. View Bills
+                    4. View Medical History
+                    5. Back to Main Menu
+                """)
+            choice = input("Select an option(1-5): ")
+            if choice == '1':
+                pass
+            elif choice == '2':
+                pass
+            elif choice == '3':
+                pass
+            elif choice == '4':
+                pass
+            elif choice == '5':
+                break
 
 class Doctor(User):
     def doc_menu(self):
-        print("""
-                -------DOCTOR MENU-------
-                1. View Patients
-                2. View Schedule
-                3. Update Availability
-                4. Back to Main Menu
-            """)
+        while True:
+            print("""
+                    -------DOCTOR MENU-------
+                    1. View Patients
+                    2. View Schedule
+                    3. Update Availability
+                    4. Back to Main Menu
+                """)
+            option = input("Select an option(1-4): ")
+            if option == '1':
+                pass
+            elif option == '2':
+                pass
+            elif option == '3':
+                pass
+            elif option == '4':
+                print("Returning to main menu.....")
+                break
+            else:
+                print("Invalid option!")
 
 class Appointment():
     def appointment_menu(self):
@@ -147,6 +199,6 @@ class Hospital():
             """)
 
 end = User(1, 'Dara',  'Doctor', 'fm@gmail.com')
-end.signUpPatient()
+end.main_menu()
 # print(end.to_dict())
 # print(end.name)
