@@ -16,8 +16,12 @@ class User():
         d_email = input("Email: ")
         d_specialty = input("Specialty: ")
         d_qualification = input("Qualifications: ")
-        d_yearsOfExperience = int(input("Years of experience: "))
-        d_workingSchedule = int(input("Working schedule: "))
+        d_yearsOfExperience = int(input("Years of experience(e.g 4 years): "))
+        d_password = int(input("Password: "))
+
+        if (d_name == "" or d_email == "" or d_specialty == "" or d_qualification == "" or d_password == ""):
+            print("Incorrect details, try again!")
+            return self.signUpDoctor()
 
         doctor_info = {
             "Name" : d_name,
@@ -25,8 +29,14 @@ class User():
             "Specialty" : d_specialty,
             "Qualification" : d_qualification,
             "YOE" : d_yearsOfExperience,
-            "WS" : d_workingSchedule
+            "Password" : d_password
         }
+
+        self.signed_user.append(doctor_info)
+        print(self.signed_user)
+        print(f"Doctor {d_name} registered successfully!")
+        doc = Doctor(self.user_id, self.name, "Doctor", self.email)
+        doc.doc_menu()
 
         # print(doctor_info["Qualification"])
 
