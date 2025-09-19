@@ -46,6 +46,10 @@ class User():
             print("Contact must be numbers!")
         p_blood_group = input("Blood Group (e.g A+, A-, B+, B-, O+, O-, AB+, AB-): ")
 
+        if p_age == "" or p_name == "" or p_gender == "" or p_blood_group == "" or p_contact == "" or p_email == "" or p_emergency_contact == "":
+            print("Invalid credentials")
+            return self.signUpPatient()
+
         patient_info = {
             "Name": p_name,
             "Age" : p_age,
