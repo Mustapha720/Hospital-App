@@ -31,41 +31,44 @@ class User():
         # print(doctor_info["Qualification"])
 
     def signUpPatient(self):
-        p_name = input("Fullname: ")
-        try:
-            p_age = int(input("Age: "))
-        except ValueError:
-            print("Invalid age! Please enter a number.")
-            return
-        p_gender = input("Gender: ")
-        p_email = input("E-mail: ")
-        try:
-            p_contact = int(input("Contact: "))
-            p_emergency_contact = int(input("Emergency Contact: "))
-        except ValueError:
-            print("Contact must be numbers!")
-        p_blood_group = input("Blood Group (e.g A+, A-, B+, B-, O+, O-, AB+, AB-): ")
+        while True:
+            p_name = input("Fullname: ")
+            try:
+                p_age = int(input("Age: "))
+            except ValueError:
+                print("Invalid age! Please enter a number.")
+                return self.signUpPatient()
+            p_gender = input("Gender: ")
+            p_email = input("E-mail: ")
+            try:
+                p_contact = int(input("Contact: "))
+                p_emergency_contact = int(input("Emergency Contact: "))
+            except ValueError:
+                print("Contact must be numbers!")
+                return self.signUpPatient()
+            p_blood_group = input("Blood Group (e.g A+, A-, B+, B-, O+, O-, AB+, AB-): ")
 
-        if p_age == "" or p_name == "" or p_gender == "" or p_blood_group == "" or p_contact == "" or p_email == "" or p_emergency_contact == "":
-            print("Invalid credentials")
-            return self.signUpPatient()
+            if p_age == "" or p_name == "" or p_gender == "" or p_blood_group == "" or p_contact == "" or p_email == "" or p_emergency_contact == "":
+                print("Invalid credentials, try again!")
+                return self.signUpPatient()
 
-        patient_info = {
-            "Name": p_name,
-            "Age" : p_age,
-            "Gender" : p_gender,
-            "Email" : p_email,
-            "Contact" : p_contact,
-            "Emergency Contact" : p_emergency_contact,
-            "Blood Group" : p_blood_group
-        }
+            patient_info = {
+                "Name": p_name,
+                "Age" : p_age,
+                "Gender" : p_gender,
+                "Email" : p_email,
+                "Contact" : p_contact,
+                "Emergency Contact" : p_emergency_contact,
+                "Blood Group" : p_blood_group
+            }
 
-        self.signed_user.append(patient_info)
-        print(f"Patient {p_name} registered successfully!")
-        patient = Patient(self.user_id, self.name, "Patient", self.email)
-        patient.patient_menu()
+            self.signed_user.append(patient_info)
+            print(self.signed_user)
+            print(f"Patient {p_name} registered successfully!")
+            patient = Patient(self.user_id, self.name, "Patient", self.email)
+            patient.patient_menu()
 
-        # print(patient_info["Name"])
+            # print(patient_info["Name"])
 
     def signUpStaff(self):
         pass
