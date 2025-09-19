@@ -57,6 +57,11 @@ class User():
                 print("Contact must be numbers!")
                 return self.signUpPatient()
             p_blood_group = input("Blood Group (e.g A+, A-, B+, B-, O+, O-, AB+, AB-): ")
+            if p_blood_group != 'A+' or p_blood_group != 'A-' or p_blood_group != 'B+' or p_blood_group != 'B-' or p_blood_group != 'O+' or p_blood_group != 'O-' or p_blood_group != 'AB+' or p_blood_group != 'AB-':
+                print("Invalid blood group")
+                return self.signUpPatient()
+            else:
+                continue
 
             if p_age == "" or p_name == "" or p_gender == "" or p_blood_group == "" or p_contact == "" or p_email == "" or p_emergency_contact == "":
                 print("Invalid credentials, try again!")
